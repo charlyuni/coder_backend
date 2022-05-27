@@ -19,20 +19,27 @@ class Usuario{
         return this.mascotas.length;
     }
 
-    addBook(book,autor){
-        this.libros.[ush]({nombre:book,autor:autor});
+    addBook(nombre, autor) {
+        let book = {nombre: nombre, autor: autor };
+        this.libros.push(book);
     }
 
     getBooksNames(){
-        return this.libros;
+        console.log(`Cantidad de Libros: ${this.libros.length}`);
+        this.libros.map((libro) => {
+            console.log(`Nombre del libro: ${libro.nombre}`);
+            console.log(`Autor del libro: ${libro.autor}`);
+        });
     }
 }
 
 
-const Usuario1 = new Usuario("Carlos","Actis",[],[{nombre:"El señor de los anillos",autor:"Juan NN"}],);
+const Usuario1 = new Usuario("Carlos","Actis",[],[],);
 console.log(Usuario1.getFullName());
 Usuario1.addMascotas("Morgana");
 Usuario1.addMascotas("Loby");
+Usuario1.addBook("El señor de los anillos","J.R.R. Tolkien");
+Usuario1.addBook("El señor de los anillos 2","J.R.R. Tolkien");
 console.log(Usuario1.countMascotas());
 console.log(Usuario1.getBooksNames()); 
 console.log(Usuario1)
