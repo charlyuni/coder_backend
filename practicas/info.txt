@@ -1,0 +1,26 @@
+{
+  "contenidoObj": {
+    "name": "Fernando3",
+    "version": "1.0.0",
+    "description": "",
+    "main": "Entrega1.js",
+    "type": "module",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/charlyuni/coder_backend.git"
+    },
+    "keywords": [],
+    "author": "Fernando2",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/charlyuni/coder_backend/issues"
+    },
+    "homepage": "https://github.com/charlyuni/coder_backend#readme"
+  },
+  "size": 503,
+  "author": "Fernando",
+  "name": "Fernando2"
+}
