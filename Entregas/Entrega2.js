@@ -1,4 +1,5 @@
 import fs from 'fs';
+/* const fs = require('fs'); */
 
 class Contenedor{
     constructor(ruta){
@@ -21,14 +22,25 @@ class Contenedor{
     }
 
     async getAll(){
-        try {
+  /*       try {
             const res = await fs.promises.readFile(this.ruta, "utf-8");
             const data = await JSON.parse(res);
             return data
         } catch (error) {
             console.log(error);
+        } */
+
+        try {
+            const res = fs.promises.readFile(this.ruta, (err, data) => {
+                if (err) throw err;
+                console.log(Buffer.from(data).toString());
+                return Buffer.from(data);
+            });
+        } catch (error) {
+            console.log(error);
         }
-   }
+
+    }
 
    async getById(id){
         try {
@@ -40,6 +52,17 @@ class Contenedor{
             console.log(error);
         }
     }
+
+    async readFile() {
+        return new Promise((resolve, reject) => {
+          fs.readFile(this.ruta, 'utf8', function (err, data) {
+            if (err) {
+              reject(err);
+            }
+            resolve(data);
+          });
+        });
+      }
 
     async deleteAll(){
         try {
@@ -73,6 +96,7 @@ class Contenedor{
 }
 
 
+
 class Producto{
         constructor(id, precio, title,thumbnailUrl, reviews,star, Categoria, description, stock){
         this.id = id;
@@ -87,7 +111,9 @@ class Producto{
     }
 }
 
-const Id = null
+export {Contenedor}
+
+/* const Id = null
 
 const fileOne = new Contenedor("./productos.txt")
 const nuevoProducto = new Producto( Id , 500,  "Pizza", "https://www.google.com", 10, 2, "Pizzas", "Pizza de queso", "10");
@@ -98,7 +124,7 @@ const nuevoProducto = new Producto( Id , 500,  "Pizza", "https://www.google.com"
 /* fileOne.deleteById(9) */
 /* fileOne.deleteAll() */
 
-const Ejercicios = async () => {
+/* const Ejercicios = async () => {
     try {
         await fileOne.save(JSON.stringify(nuevoProducto));
         await console.log( fileOne.getAll()) ;
@@ -109,6 +135,22 @@ const Ejercicios = async () => {
     } catch (error) {
         console.log(error);
     }
-}
+}  */
 
-Ejercicios()
+ const Ejercicios = async () => {
+    try {
+       
+        await fileOne.readFile();
+
+
+
+    } catch (error) {
+        console.log(error);
+    }
+}  
+
+const nuevoProducto = new Producto( 23 , 500,  "Pizza", "https://www.google.com", 10, 2, "Pizzas", "Pizza de queso", "10");
+const fileOne = new Contenedor("./productos.txt")
+console.log(Ejercicios())
+
+
